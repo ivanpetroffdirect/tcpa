@@ -1,158 +1,138 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор цены за достижение цели в Яндекс Директе</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="ru"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Калькулятор цены за достижение цели в Яндекс Директе&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="style.css"&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="calc-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Калькулятор цены за достижение цели в Яндекс Директе&lt;/h1&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="descriptor"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>При настройке стратегии в Яндекс Директе нужно указать цель для автостратегии и желаемую цену за её достижение. Например, вы можете указать в качестве цели — заявку, которую отправляет посетитель сайта. Для того, чтобы кампания работала эффективно важно платить за каждую заявку не дороже, чем вы можете себе позволить. Данный калькулятор помогает рассчитать цену за достижение цели. Заполните все ячейки. Если что-то непонятно, нажимайте на подсказку (знак вопроса).</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Левая колонка --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="price"&gt;Средний чек&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('price')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="price" value="5000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;руб.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="cost"&gt;Себестоимость&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('cost')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="cost" value="2000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;руб.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="expenses"&gt;Дополнительные издержки&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('expenses')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="expenses" value="500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;руб.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="margin"&gt;Маржа (авторасчет)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('margin')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="margin" readonly&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;руб.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Правая колонка --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="drr"&gt;Желаемый % расхода от маржи&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('drr')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="drr" value="40"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;%&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="buyout"&gt;Процент выкупа и возвраты&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('buyout')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="buyout" value="90"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;%&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="vat"&gt;Процент НДС&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('vat')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="vat" value="22"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;%&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="label-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="cr"&gt;Конверсия из цели в продажу&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="help-btn" onclick="showHelp('cr')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="input-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="cr" value="10" step="0.1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="unit"&gt;%&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Блок результатов --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="results-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="results-center-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="result-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="result-label"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Цена достижения цели</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="help-btn" onclick="showHelp('tcpa-no-vat')"&gt;?&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="result-value" id="tcpa-no-vat"&gt;0 ₽&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="author-credits"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>Разработано экспертом по платному трафику Никитой Кравченко.&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>Подписывайтесь на Telegram-канал Никиты по ссылке:<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="https://t.me/budni_evangelista" target="_blank" rel="noopener"&gt;@budni_evangelista&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;!-- Модальное окно для подсказок --&gt;</p>
-<p class="p1">&lt;div id="helpModal" class="modal" onclick="closeHelp()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="modal-content" onclick="event.stopPropagation()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="close-btn" onclick="closeHelp()"&gt;&amp;times;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-title" id="modalTitle"&gt;Заголовок&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-text" id="modalText"&gt;Описание метрики.&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="modal-formula" id="modalFormula"&gt;Формула&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script src="script.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div class="calc-container">
+  <h1>Калькулятор цены за достижение цели в Яндекс Директе</h1>
+  
+  <div class="descriptor">
+    При настройке стратегии в Яндекс Директе нужно указать цель для автостратегии и желаемую цену за её достижение. Например, вы можете указать в качестве цели — заявку, которую отправляет посетитель сайта. Для того, чтобы кампания работала эффективно важно платить за каждую заявку не дороже, чем вы можете себе позволить. Данный калькулятор помогает рассчитать цену за достижение цели. Заполните все ячейки. Если что-то непонятно, нажимайте на подсказку (знак вопроса).
+  </div>
+  
+  <div class="grid">
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="price">Средний чек</label>
+        <span class="help-btn" data-help="price">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="price" value="5000">
+        <span class="unit">руб.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="cost">Себестоимость</label>
+        <span class="help-btn" data-help="cost">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="cost" value="2000">
+        <span class="unit">руб.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="expenses">Дополнительные издержки</label>
+        <span class="help-btn" data-help="expenses">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="expenses" value="500">
+        <span class="unit">руб.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="margin">Маржа (авторасчет)</label>
+        <span class="help-btn" data-help="margin">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="margin" readonly>
+        <span class="unit">руб.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="drr">Желаемый % расхода от маржи</label>
+        <span class="help-btn" data-help="drr">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="drr" value="40">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="buyout">Процент выкупа и возвраты</label>
+        <span class="help-btn" data-help="buyout">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="buyout" value="90">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="vat">Процент НДС</label>
+        <span class="help-btn" data-help="vat">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="vat" value="22">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="cr">Конверсия из цели в продажу</label>
+        <span class="help-btn" data-help="cr">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="cr" value="10" step="0.1">
+        <span class="unit">%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-section">
+    <div class="results-center-wrapper">
+      <div class="result-card">
+        <div class="result-label">
+          Цена достижения цели
+          <span class="help-btn" data-help="tcpa-no-vat">?</span>
+        </div>
+        <div class="result-value" id="tcpa-no-vat">0 ₽</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="author-credits">
+    Разработано экспертом по платному трафику Никитой Кравченко.<br>
+    Подписывайтесь на Telegram-канал Никиты по ссылке: 
+    <a href="https://t.me/budni_evangelista" target="_blank" rel="noopener">@budni_evangelista</a>
+  </footer>
+</div>
+
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModalBtn">&times;</span>
+    <div class="modal-title" id="modalTitle">Заголовок</div>
+    <div class="modal-text" id="modalText">Описание метрики.</div>
+    <div class="modal-formula" id="modalFormula">Формула</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
