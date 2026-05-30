@@ -385,3 +385,87 @@
     <div class="form-group">
       <div class="label-wrapper">
         <label for="margin">Маржа (авторасчет)</label>
+        <span class="help-btn" data-help="margin">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="margin" readonly>
+        <span class="unit">руб.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="drr">Желаемый % расхода от маржи</label>
+        <span class="help-btn" data-help="drr">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="drr" value="40">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="buyout">Процент выкупа и возвраты</label>
+        <span class="help-btn" data-help="buyout">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="buyout" value="90">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="vat">Процент НДС</label>
+        <span class="help-btn" data-help="vat">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="vat" value="22">
+        <span class="unit">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-wrapper">
+        <label for="cr">Конверсия из цели в продажу</label>
+        <span class="help-btn" data-help="cr">?</span>
+      </div>
+      <div class="input-wrapper">
+        <input type="number" id="cr" value="10" step="0.1">
+        <span class="unit">%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-section">
+    <div class="results-center-wrapper">
+      <div class="result-card">
+        <div class="result-label">
+          Цена достижения цели
+          <span class="help-btn" data-help="tcpa-no-vat">?</span>
+        </div>
+        <div class="result-value" id="tcpa-no-vat">0 ₽</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="author-credits">
+    Разработано экспертом по платному трафику Никитой Кравченко.<br>
+    Подписывайтесь на Telegram-канал Никиты по ссылке: 
+    <a href="https://t.me/budni_evangelista" target="_blank" rel="noopener">@budni_evangelista</a>
+  </footer>
+</div>
+
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModalBtn">&times;</span>
+    <div class="modal-title" id="modalTitle">Заголовок</div>
+    <div class="modal-text" id="modalText">Описание метрики.</div>
+    <div class="modal-formula" id="modalFormula">Формула</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
