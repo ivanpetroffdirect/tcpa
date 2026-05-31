@@ -313,19 +313,18 @@
       justify-content: center;
     }
 
-    /* Исправлено выравнивание на левый край */
+    /* Настройки футера полностью скопированы с .descriptor */
     .author-credits {
-      text-align: left;
-      max-width: 480px;
-      margin: 2rem auto 0 auto;
-      font-size: 0.8rem;
-      line-height: 1.5;
+      font-size: 0.9rem;
       color: var(--text-light);
+      text-align: left;
+      max-width: 680px;
+      margin: 2rem auto 0 auto;
+      line-height: 1.45;
     }
 
     @media (min-width: 640px) {
       .author-credits {
-        font-size: 0.875rem;
         margin-top: 2.5rem;
       }
     }
@@ -351,6 +350,7 @@
   </div>
   
   <div class="grid">
+    <!-- Левая колонка -->
     <div class="form-group">
       <div class="label-wrapper">
         <label for="price">Средний чек</label>
@@ -395,6 +395,7 @@
       </div>
     </div>
 
+    <!-- Правая колонка -->
     <div class="form-group">
       <div class="label-wrapper">
         <label for="drr">Желаемый % расхода от маржи</label>
@@ -440,6 +441,7 @@
     </div>
   </div>
 
+  <!-- Блок результатов -->
   <div class="results-section">
     <div class="results-center-wrapper">
       <div class="result-card">
@@ -459,6 +461,7 @@
   </footer>
 </div>
 
+<!-- Модальное окно для подсказок -->
 <div id="helpModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" id="closeModalBtn">&times;</span>
