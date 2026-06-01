@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const helpData = {
     price: {
-      title: "Средний чек (AOV)",
+      title: "Средний чек",
       text: "Средняя стоимость одного заказа, которую оплачивает клиент.",
       formula: "Заданное пользователем значение"
     },
     cost: {
       title: "Себестоимость",
-      text: "Прямые затраты на производство, закупку товара или выполнение услуги.",
+      text: "Затраты на производство, закупку товара или выполнение услуги.",
       formula: "Заданное пользователем значение"
     },
     expenses: {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     margin: {
       title: "Маржа",
-      text: "Грязная прибыль с одного проданного товара или оказанной услуги без учета расходов на маркетинг.",
+      text: "Доход с одного проданного товара без учета маркетинга.",
       formula: "Маржа = Средний чек - Себестоимость - Издержки"
     },
     drr: {
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     cr: {
       title: "Конверсия из цели в продажу",
-      text: "Какой процент пользователей, совершивших промежуточное действие (например, оставивших заявку на сайте), в итоге покупают товар.",
+      text: "Какой процент пользователей, совершивших это действие (например, оставивших заявку на сайте), в итоге покупают товар.",
       formula: "Заданное пользователем значение"
     },
     'tcpa-no-vat': {
       title: "Цена достижения цели (tCPA без НДС)",
-      text: "Это значение нужно указывать в поле «Цена достижения цели» в настройках стратегии Яндекс Директа. Здесь рассчитывается сумма без НДС, так как баланс внутри рекламного кабинета отображается «чистым» (без НДС).",
+      text: "Это значение нужно указывать в поле «Цена достижения цели» в настройках стратегии Яндекс Директа. Здесь рассчитывается сумма без указанного выше НДС, так как баланс внутри рекламного кабинета отображается без НДС.",
       formula: "Цена достижения цели = (Маржа × % расхода × % выкупа × 100 / (100 + НДС)) × Конверсия в продажу"
     }
   };
@@ -51,25 +51,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalTitle = document.getElementById('modalTitle');
   const modalText = document.getElementById('modalText');
   const modalFormula = document.getElementById('modalFormula');
+  const modalImageWrapper = document.getElementById('modalImageWrapper');
+  const modalImage = document.getElementById('modalImage');
   const closeModalBtn = document.getElementById('closeModalBtn');
 
-  // Функция открытия модального окна
+  // Показ обычного текстового окна
   function showHelp(id) {
     const data = helpData[id];
     if (!data) return;
     
+    // Удаляем дескрипторный стиль, если он был добавлен ранее
+    modalTitle.classList.remove('modal-title-descriptor');
+    
     modalTitle.innerText = data.title;
     modalText.innerText = data.text;
     modalFormula.innerText = data.formula;
+    
+    modalText.style.display = 'block';
+    modalFormula.style.display = 'block';
+    modalImageWrapper.style.display = 'none';
+    
     modal.style.display = 'flex';
   }
 
-  // Функция закрытия
-  function closeHelp() {
-    modal.style.display = 'none';
+  // Показ окна со скриншотом и стилем дескриптора
+  function showImageModal(imgUrl, titleText) {
+    // Добавляем класс для мимикрии под дескриптор
+    modalTitle.classList.add('modal-title-descriptor');
+    
+    modalTitle.innerText = titleText;
+    modalImage.src = imgUrl;
+    
+    modalText.style.display = 'none';
+    modalFormula.style.display = 'none';
+    modalImageWrapper.style.display = 'block';
+    
+    modal.style.display = 'flex';
   }
 
-  // Навешиваем клики на все кнопки знаков вопроса
+  function closeHelp() {
+    modal.style.display = 'none';
+    modalImage.src = '';
+  }
+
   document.querySelectorAll('.help-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -78,24 +102,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Закрытие при клике на крестик
+  document.querySelectorAll('.help-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const imgUrl = link.getAttribute('data-help-img');
+      const customTitle = "Скриншот из Мастера кампаний с указанием цели и ценой за ее достижение";
+      showImageModal(imgUrl, customTitle);
+    });
+  });
+
   closeModalBtn.addEventListener('click', closeHelp);
-
-  // Закрытие при клике на область вокруг модального окна
   modal.addEventListener('click', closeHelp);
-
-  // Предотвращаем закрытие при клике внутри самого контента модалки
   document.querySelector('.modal-content').addEventListener('click', (e) => {
     e.stopPropagation();
   });
 
-  // Логика калькулятора
   const inputIds = ['price', 'cost', 'expenses', 'drr', 'buyout', 'vat', 'cr'];
   const inputs = {};
   inputIds.forEach(id => inputs[id] = document.getElementById(id));
   
   const marginInput = document.getElementById('margin');
   const tcpaNoVatEl = document.getElementById('tcpa-no-vat');
+  
+  let currentRawValue = 0;
 
   function calculate() {
     const price = parseFloat(inputs.price.value) || 0;
@@ -112,9 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tcpoVat = margin * drr * buyout;
     const tcpoNoVat = tcpoVat * 100 / (100 + vatPercent);
-    const tcpaNoVat = tcpoNoVat * cr;
+    currentRawValue = Math.round(tcpoNoVat * cr);
 
-    tcpaNoVatEl.innerText = formatCurrency(tcpaNoVat);
+    tcpaNoVatEl.innerText = formatCurrency(currentRawValue);
   }
 
   function formatCurrency(value) {
@@ -122,10 +151,23 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(value);
   }
 
+  tcpaNoVatEl.addEventListener('click', () => {
+    if (currentRawValue <= 0) return;
+
+    navigator.clipboard.writeText(currentRawValue.toString()).then(() => {
+      tcpaNoVatEl.setAttribute('data-tooltip', 'Скопировано');
+    }).catch(err => {
+      console.error('Ошибка копирования: ', err);
+    });
+  });
+
+  tcpaNoVatEl.addEventListener('mouseleave', () => {
+    tcpaNoVatEl.setAttribute('data-tooltip', 'Скопировать');
+  });
+
   inputIds.forEach(id => {
     inputs[id].addEventListener('input', calculate);
   });
 
-  // Первичный расчет
   calculate();
 });
