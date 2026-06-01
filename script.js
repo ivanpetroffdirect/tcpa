@@ -1,14 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === БЛОК ПРЕДЗАГРУЗКИ КАРТИНКИ ===
-  // Браузер скачает её в фоне сразу при загрузке страницы
-  const preloadImg = new Image();
-  preloadImg.src = "https://i.postimg.cc/RV2KTdxk/2026-06-01-11-50-29.png";
-  // ==================================
-
-  const helpData = {
-    price: {
-      title: "Средний чек (AOV)",
-// ... дальше весь остальной код файла идет без изменений ...
   const helpData = {
     price: {
       title: "Средний чек",
