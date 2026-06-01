@@ -67,8 +67,7 @@
       font-size: 0.9rem;
       color: var(--text-light);
       text-align: left;
-      max-width: 680px;
-      margin: 0 auto 1.75rem auto;
+      margin: 0 0 1.75rem 0;
       line-height: 1.45;
     }
 
@@ -76,6 +75,18 @@
       .descriptor {
         margin-bottom: 2.25rem;
       }
+    }
+
+    .help-link {
+      color: var(--primary);
+      border-bottom: 1px dashed var(--primary);
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .help-link:hover {
+      opacity: 0.8;
     }
 
     .grid {
@@ -220,16 +231,70 @@
     }
 
     .result-value {
+      display: inline-block;
       font-size: 1.75rem;
       font-weight: 800;
       color: var(--success);
       word-break: break-word;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s, transform 0.1s;
+      user-select: none;
     }
 
     @media (min-width: 640px) {
       .result-value {
         font-size: 2.25rem;
       }
+    }
+
+    .result-value:hover {
+      color: #059669;
+    }
+
+    .result-value:active {
+      transform: scale(0.97);
+    }
+
+    .result-value::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background-color: #1e293b;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.15s ease-in-out;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .result-value::before {
+      content: '';
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #1e293b transparent transparent transparent;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.15s ease-in-out;
+      z-index: 10;
+    }
+
+    .result-value:hover::after,
+    .result-value:hover::before {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
     }
 
     .modal {
@@ -252,7 +317,7 @@
       background: #fff;
       padding: 1.25rem;
       border-radius: 12px;
-      max-width: 440px;
+      max-width: 500px;
       width: 100%;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       position: relative;
@@ -279,6 +344,14 @@
       margin-bottom: 0.75rem;
       color: #0f172a;
       padding-right: 1.5rem;
+      line-height: 1.45;
+    }
+
+    /* Новый класс для мимикрии под стиль дескриптора */
+    .modal-title-descriptor {
+      font-size: 0.9rem !important;
+      font-weight: 400 !important;
+      color: var(--text-light) !important;
     }
 
     .modal-text {
@@ -298,6 +371,21 @@
       word-break: break-all;
     }
 
+    .modal-image-wrapper {
+      display: none;
+      margin-top: 0.5rem;
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .modal-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     .close-btn {
       position: absolute;
       top: 0.75rem;
@@ -313,13 +401,11 @@
       justify-content: center;
     }
 
-    /* Настройки футера полностью скопированы с .descriptor */
     .author-credits {
       font-size: 0.9rem;
       color: var(--text-light);
       text-align: left;
-      max-width: 680px;
-      margin: 2rem auto 0 auto;
+      margin: 2rem 0 0 0;
       line-height: 1.45;
     }
 
@@ -346,11 +432,10 @@
   <h1>Калькулятор цены за достижение цели в Яндекс Директе</h1>
   
   <div class="descriptor">
-    При настройке кампании в Яндекс Директе нужно указать цель для автостратегии и желаемую цену за её достижение. Например, в качестве цели можно указать заявку, которую отправляет посетитель сайта. Для того, чтобы кампания работала эффективно важно платить за каждую заявку не дороже, чем вы можете себе позволить. Данный калькулятор помогает рассчитать цену за достижение цели. Заполните все ячейки. Если что-то непонятно, нажимайте на подсказку (знак вопроса).
+    При настройке кампании в Яндекс Директе нужно указать цель для автостратегии и <span class="help-link" data-help-img="https://i.postimg.cc/RV2KTdxk/2026-06-01-11-50-29.png">желаемую цену за её достижение</span>. Например, в качестве цели можно указать заявку, которую отправляет посетитель сайта. Для того, чтобы кампания работала эффективно важно платить за каждую заявку не дороже, чем вы можете себе позволить. Данный калькулятор помогает рассчитать цену за достижение цели. Заполните все ячейки. Если что-то непонятно, нажимайте на подсказку (знак вопроса).
   </div>
   
   <div class="grid">
-    <!-- Левая колонка -->
     <div class="form-group">
       <div class="label-wrapper">
         <label for="price">Средний чек</label>
@@ -395,7 +480,6 @@
       </div>
     </div>
 
-    <!-- Правая колонка -->
     <div class="form-group">
       <div class="label-wrapper">
         <label for="drr">Желаемый % расхода от маржи</label>
@@ -441,7 +525,6 @@
     </div>
   </div>
 
-  <!-- Блок результатов -->
   <div class="results-section">
     <div class="results-center-wrapper">
       <div class="result-card">
@@ -449,25 +532,27 @@
           Цена достижения цели
           <span class="help-btn" data-help="tcpa-no-vat">?</span>
         </div>
-        <div class="result-value" id="tcpa-no-vat">0 ₽</div>
+        <div class="result-value" id="tcpa-no-vat" data-tooltip="Скопировать">0 ₽</div>
       </div>
     </div>
   </div>
 
   <footer class="author-credits">
-    Разработано экспертом по интернет-рекламе Никитой Кравченко.<br>
+    Разработано экспертом по платному трафику Никитой Кравченко.<br>
     Подписывайтесь на Telegram-канал Никиты по ссылке: 
-    <a href="https://t.me/+QPG4Sl3oeBE3NGYy" target="_blank" rel="noopener">@budni_evangelista</a>
+    <a href="https://t.me/budni_evangelista" target="_blank" rel="noopener">@budni_evangelista</a>
   </footer>
 </div>
 
-<!-- Модальное окно для подсказок -->
 <div id="helpModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" id="closeModalBtn">&times;</span>
     <div class="modal-title" id="modalTitle">Заголовок</div>
     <div class="modal-text" id="modalText">Описание метрики.</div>
     <div class="modal-formula" id="modalFormula">Формула</div>
+    <div class="modal-image-wrapper" id="modalImageWrapper">
+      <img id="modalImage" src="" alt="Подсказка">
+    </div>
   </div>
 </div>
 
