@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   // === БЛОК ПРЕДЗАГРУЗКИ КАРТИНКИ ===
-  // Браузер скачает её в фоне сразу при загрузке страницы, чтобы она открывалась мгновенно
   const preloadImg = new Image();
   preloadImg.src = "https://i.postimg.cc/RV2KTdxk/2026-06-01-11-50-29.png";
   // ==================================
@@ -47,9 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
       formula: "Заданное пользователем значение"
     },
     'tcpa-no-vat': {
-      title: "Цена достижения цели (tCPA без НДС)",
+      title: "Цена за достижение цели tCPA",
       text: "Это значение нужно указывать в поле «Цена достижения цели» в настройках стратегии Яндекс Директа. Здесь рассчитывается сумма без указанного выше НДС, так как баланс внутри рекламного кабинета отображается без НДС.",
-      formula: "Цена достижения цели = (Маржа × % расхода × % выкупа × 100 / (100 + НДС)) × Конверсия в продажу"
+      formula: "Цена за достижение цели tCPA = (Маржа × % расхода × % выкупа × 100 / (100 + НДС)) × Конверсия в продажу"
+    },
+    'tcpo-no-vat': {
+      title: "Цена за привлечение заказа tCPO",
+      text: "Целевая цена за привлечение одной продажи. Укажите это значение в настройках стратегии в Яндекс Директе, если в качестве цели указываете не клик по кнопке или заявку, а непосредственно покупку.",
+      formula: "Цена за продажу tCPO = Маржа × % расхода × % выкупа × 100 / (100 + НДС)"
     }
   };
 
@@ -61,14 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalImage = document.getElementById('modalImage');
   const closeModalBtn = document.getElementById('closeModalBtn');
 
-  // Показ обычного текстового окна
   function showHelp(id) {
     const data = helpData[id];
     if (!data) return;
     
-    // Удаляем дескрипторный стиль, если он был добавлен ранее
     modalTitle.classList.remove('modal-title-descriptor');
-    
     modalTitle.innerText = data.title;
     modalText.innerText = data.text;
     modalFormula.innerText = data.formula;
@@ -80,11 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.style.display = 'flex';
   }
 
-  // Показ окна со скриншотом и стилем дескриптора
   function showImageModal(imgUrl, titleText) {
-    // Добавляем класс для мимикрии под дескриптор
     modalTitle.classList.add('modal-title-descriptor');
-    
     modalTitle.innerText = titleText;
     modalImage.src = imgUrl;
     
@@ -129,8 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const marginInput = document.getElementById('margin');
   const tcpaNoVatEl = document.getElementById('tcpa-no-vat');
+  const tcpoNoVatEl = document.getElementById('tcpo-no-vat'); // Новый элемент
   
-  let currentRawValue = 0;
+  let currentRawTcpa = 0;
+  let currentRawTcpo = 0;
 
   function calculate() {
     const price = parseFloat(inputs.price.value) || 0;
@@ -145,11 +145,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const margin = price - cost - expenses;
     marginInput.value = margin;
 
+    // Расчет tCPO (Цена за продажу без НДС)
     const tcpoVat = margin * drr * buyout;
     const tcpoNoVat = tcpoVat * 100 / (100 + vatPercent);
-    currentRawValue = Math.round(tcpoNoVat * cr);
+    currentRawTcpo = Math.round(tcpoNoVat);
 
-    tcpaNoVatEl.innerText = formatCurrency(currentRawValue);
+    // Расчет tCPA (Цена за промежуточную цель без НДС)
+    currentRawValue = Math.round(tcpoNoVat * cr); // Сохраняем логику для обратной совместимости
+    currentRawTcpa = currentRawValue;
+
+    tcpaNoVatEl.innerText = formatCurrency(currentRawTcpa);
+    tcpoNoVatEl.innerText = formatCurrency(currentRawTcpo);
   }
 
   function formatCurrency(value) {
@@ -157,18 +163,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(value);
   }
 
+  // Копирование для tCPA
   tcpaNoVatEl.addEventListener('click', () => {
-    if (currentRawValue <= 0) return;
-
-    navigator.clipboard.writeText(currentRawValue.toString()).then(() => {
+    if (currentRawTcpa <= 0) return;
+    navigator.clipboard.writeText(currentRawTcpa.toString()).then(() => {
       tcpaNoVatEl.setAttribute('data-tooltip', 'Скопировано');
-    }).catch(err => {
-      console.error('Ошибка копирования: ', err);
     });
   });
 
   tcpaNoVatEl.addEventListener('mouseleave', () => {
     tcpaNoVatEl.setAttribute('data-tooltip', 'Скопировать');
+  });
+
+  // Копирование для tCPO
+  tcpoNoVatEl.addEventListener('click', () => {
+    if (currentRawTcpo <= 0) return;
+    navigator.clipboard.writeText(currentRawTcpo.toString()).then(() => {
+      tcpoNoVatEl.setAttribute('data-tooltip', 'Скопировано');
+    });
+  });
+
+  tcpoNoVatEl.addEventListener('mouseleave', () => {
+    tcpoNoVatEl.setAttribute('data-tooltip', 'Скопировать');
   });
 
   inputIds.forEach(id => {
